@@ -5,7 +5,7 @@ export const notesRouter = Router();
 const maxLength = Number(process.env.NOTE_MAX_LENGTH ?? 500);
 
 notesRouter.get("/orders/:id/notes", async (req, res) => {
-  const notes = await db.note.findMany({ where: { orderId: req.params.id }, orderBy: { createdAt: "desc" } });
+  const notes = await db.note.findMany({ where: { id: req.params.id }, orderBy: { createdAt: "desc" } });
   res.json(notes);
 });
 
