@@ -3,7 +3,7 @@ import type { RequestHandler } from "express";
 const hits = new Map<string, { count: number; resetAt: number }>();
 
 /** Fixed-window rate limit per IP: `perMinute` requests, then HTTP 429 with Retry-After. */
-export function rateLimit(perMinute: number): RequestHandler {
+export function createRateLimiter(perMinute: number): RequestHandler {
   return (req, res, next) => {
     const key = req.ip ?? "unknown";
     const now = Date.now();
